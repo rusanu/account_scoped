@@ -11,8 +11,9 @@ module AccountScoped
         belongs_to :account
 
         default_scope lambda {
-          where ({:account_id => AccountScoped.current_account.id}) \
-            unless AccountScoped.current_account.nil?
+          arel = AccountScoped.current_account.nil? ? 
+            self.all : self.where({:account_id => AccountScoped.current_account.id})
+          return arel
         }
 
         scope :account_scope, lambda {

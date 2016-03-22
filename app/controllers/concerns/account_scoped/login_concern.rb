@@ -8,14 +8,11 @@ module AccountScoped
     end
 
     def login_user(user, account = nil)
-      account ||= user.default_account
-      session[:user_id] = user.id
-      session[:account_id] = account.id
+      AccountScoped.login_user(session, user, account)
     end
 
     def logout_user
-      session[:user_id] = nil
-      session[:account_id] = nil
+      AccountScoped.logout_user(session)
     end
 
     def current_user
@@ -34,7 +31,7 @@ module AccountScoped
     end
 
     def ensure_user_logged_in
-      raise AuthorizationConcern::UserRequired if !is_user_logged_in?
+      raise UserRequired if !is_user_logged_in?
     end
 
     included do

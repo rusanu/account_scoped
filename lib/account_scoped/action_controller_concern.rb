@@ -11,7 +11,7 @@ module AccountScoped
       def account_scoped
         self.class_eval do
 
-          before_filter :validate_account_scope
+          before_action :validate_account_scope
 
           private
 
@@ -41,7 +41,7 @@ module AccountScoped
 
       def check_account_scoped
           self.class_eval do
-            before_filter :check_account_scope
+            before_action :check_account_scope
 
             private 
             def check_account_scope
