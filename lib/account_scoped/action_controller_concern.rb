@@ -8,10 +8,10 @@ module AccountScoped
 
     module ClassMethods
 
-      def account_scoped
+      def account_scoped(opts = {})
+        
         self.class_eval do
-
-          before_action :validate_account_scope
+          before_action :validate_account_scope, opts
 
           private
 
