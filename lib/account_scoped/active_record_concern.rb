@@ -8,7 +8,7 @@ module AccountScoped
       end
 
       def account_scoped
-        belongs_to :account
+        belongs_to :account, optional: true
 
         default_scope lambda {
           arel = AccountScoped.current_account.nil? ? 
