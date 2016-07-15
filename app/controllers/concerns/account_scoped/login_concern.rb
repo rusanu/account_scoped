@@ -3,8 +3,8 @@ module AccountScoped
     extend ActiveSupport::Concern
 
     def is_user_logged_in?
-      return !session[:user_id].nil? &&
-          !session[:account_id].nil?
+      return !session[:user_id].nil? && !User.where(id: session[:user_id]).first.nil?
+          !session[:account_id].nil? && !Account.where(id: account[:account_id]).first.nil?
     end
 
     def login_user(user, account = nil)
