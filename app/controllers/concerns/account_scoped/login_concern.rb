@@ -1,3 +1,4 @@
+
 module AccountScoped
   module LoginConcern
     extend ActiveSupport::Concern
@@ -31,7 +32,7 @@ module AccountScoped
     end
 
     def ensure_user_logged_in
-      raise UserRequired if !is_user_logged_in?
+      raise UserRequired.new(session) if !self.is_user_logged_in?
     end
 
     included do

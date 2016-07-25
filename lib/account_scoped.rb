@@ -3,6 +3,7 @@ require "account_scoped/active_record_concern"
 require "account_scoped/action_controller_concern"
 require "account_scoped/active_support_concern"
 require "account_scoped/engine"
+require "account_scoped/exceptions"
 
 module AccountScoped
 
